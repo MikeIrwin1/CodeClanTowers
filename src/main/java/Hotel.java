@@ -2,20 +2,26 @@ import java.util.ArrayList;
 
 public class Hotel {
 
-    private ArrayList<Bedroom> bedrooms;
+    private ArrayList<Bedroom> vacantBedrooms;
+    private ArrayList<Bedroom> occupiedBedrooms;
     private ArrayList<DiningRoom> dinings;
     private ArrayList<Conference> conferences;
 
-    public Hotel(ArrayList<Bedroom> bedrooms, ArrayList<DiningRoom> dinings, ArrayList<Conference> conferences){
+    public Hotel(ArrayList<Bedroom> vacantBedrooms, ArrayList<DiningRoom> dinings, ArrayList<Conference> conferences){
 
-        this.bedrooms = bedrooms;
+        this.vacantBedrooms = vacantBedrooms;
+        this.occupiedBedrooms = new ArrayList<>();
         this.dinings = dinings;
         this.conferences = conferences;
 
     }
 
-    public ArrayList<Bedroom> getBedrooms(){
-        return this.bedrooms;
+    public ArrayList<Bedroom> getVacantBedrooms(){
+        return this.vacantBedrooms;
+    }
+
+    public ArrayList<Bedroom> getOccupiedBedrooms(){
+        return this.occupiedBedrooms;
     }
 
     public ArrayList<DiningRoom> getDiningRooms(){
@@ -26,9 +32,18 @@ public class Hotel {
         return this.conferences;
     }
 
-    public int getNumberOfBedrooms(){
-        return this.bedrooms.size();
+    public int getNumberOfVacantBedrooms(){
+        return this.vacantBedrooms.size();
     }
+
+    public int getNumberOfOccupiedBedrooms(){
+        return this.occupiedBedrooms.size();
+    }
+
+    public int getTotalNumberOfRooms(){
+        return getNumberOfOccupiedBedrooms()+getNumberOfVacantBedrooms();
+    }
+
 
     public int getNumberOfDiningRooms(){
         return this.dinings.size();
@@ -40,6 +55,13 @@ public class Hotel {
 
 
     public void checkInGuest(Guest guest1) {
-        this.bedrooms.get(0).addGuest(guest1);
+        this.vacantBedrooms.get(0).addGuest(guest1);
+    }
+
+    public Booking bookRoom(int stayLength){
+        Bedroom bedroom = this.getVacantBedrooms().remove(0);
+        this.occupiedBedrooms.add(bedroom);
+        Booking booking = new Booking(bedroom, stayLength);
+        return booking;
     }
 }

@@ -54,7 +54,7 @@ public class HotelTest {
 
     @Test
     public void hotelHasBedrooms(){
-        assertEquals(3,hotel.getNumberOfBedrooms());
+        assertEquals(3,hotel.getNumberOfVacantBedrooms());
     }
 
     @Test
@@ -70,7 +70,20 @@ public class HotelTest {
     @Test
     public void hotelCanCheckInGuests(){
         hotel.checkInGuest(guest1);
-        assertEquals(1,hotel.getBedrooms().get(0).getNumberOfGuests());
+        assertEquals(1,hotel.getVacantBedrooms().get(0).getNumberOfGuests());
+    }
+
+    @Test
+    public void hotelTotalNumberOfRooms(){
+        assertEquals(3, hotel.getTotalNumberOfRooms());
+    }
+
+    @Test
+    public void hotelCanTakeBooking(){
+        Booking booking = hotel.bookRoom(2);
+        assertEquals(1, hotel.getNumberOfOccupiedBedrooms());
+        assertEquals(2, hotel.getNumberOfVacantBedrooms());
+        assertEquals(2, booking.getStayLength());
     }
 
 }
