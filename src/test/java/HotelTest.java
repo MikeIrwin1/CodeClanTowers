@@ -73,6 +73,4 @@ public class HotelTest {
         assertEquals(1,hotel.getBedrooms().get(0).getNumberOfGuests());
     }
 
-
-
 }
