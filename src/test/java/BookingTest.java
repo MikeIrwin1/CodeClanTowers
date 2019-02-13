@@ -12,6 +12,7 @@ public class BookingTest {
     public void before(){
 
         bedroom = new Bedroom(12, 2, "Twin");
+        bedroom.addRate(70);
         booking = new Booking( bedroom, 2);
 
     }
@@ -24,6 +25,11 @@ public class BookingTest {
     @Test
     public void bookingHasStayLength(){
         assertEquals(2, booking.getStayLength());
+    }
+
+    @Test
+    public void bookingTotalBill(){
+        assertEquals(140, booking.getBill());
     }
 
 }

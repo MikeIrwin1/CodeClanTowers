@@ -16,4 +16,8 @@ public class Booking {
         return this.stayLength;
     }
 
+    public int getBill(){
+        return this.bedroom.getRate()*this.stayLength;
+    }
+
 }

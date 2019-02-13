@@ -28,4 +28,10 @@ public class BedroomTest {
         assertEquals("Double", bedroom.getType());
     }
 
+    @Test
+    public void canAddRate(){
+        bedroom.addRate(50);
+        assertEquals(50, bedroom.getRate());
+    }
+
 }
