@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Booking {
 
     private Bedroom bedroom;
@@ -19,5 +21,6 @@ public class Booking {
     public int getBill(){
         return this.bedroom.getRate()*this.stayLength;
     }
+
 
 }

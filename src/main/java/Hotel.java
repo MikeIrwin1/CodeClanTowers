@@ -57,15 +57,24 @@ public class Hotel {
     }
 
 
-    public void checkInGuest(Guest guest1) {
-        this.vacantBedrooms.get(0).addGuest(guest1);
-    }
+//    public void checkInGuest(Guest guest1) {
+//        this.vacantBedrooms.get(0).addGuest(guest1);
+//    }
 
-    public Booking bookRoom(int stayLength){
-        Bedroom bedroom = this.getVacantBedrooms().remove(0);
-        Booking booking = new Booking(bedroom, stayLength);
-        this.bookings.add(booking);
-        return booking;
+    public Booking bookRoom(int stayLength, ArrayList<Guest> guests){
+
+        Bedroom chosenBedroom;
+
+        for(int i = 0; i< this.vacantBedrooms.size(); i++) {
+            if (vacantBedrooms.get(i).getCapacity() >= guests.size()) {
+                chosenBedroom = this.getVacantBedrooms().remove(i);
+                Booking booking = new Booking(chosenBedroom, stayLength);
+                this.bookings.add(booking);
+                return booking;
+            }
+        }
+
+        return null;
     }
 
     public HashMap<String,Integer> getRates(){
@@ -81,4 +90,6 @@ public class Hotel {
             bedroom.addRate(this.rates.get(bedroom.getType()));
         }
     }
+
+
 }

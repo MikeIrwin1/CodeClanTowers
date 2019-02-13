@@ -13,7 +13,7 @@ public class Bedroom {
         this.number = number;
         this.capacity = capacity;
         this.type = type;
-        this.guests = new ArrayList<>();
+//        this.guests = new ArrayList<>();
     }
 
     public int getNumber(){
@@ -36,13 +36,20 @@ public class Bedroom {
         return this.guests.size();
     }
 
-    public void addGuest(Guest guest){
-        this.guests.add(guest);
+//    public void addGuest(Guest guest){
+//        this.guests.add(guest);
+//    }
+
+    public void addGuests(ArrayList<Guest> guests){
+        this.guests = guests;
     }
 
     public void addRate(int rate){
         this.rate = rate;
     }
+
+
+
 
 
 
